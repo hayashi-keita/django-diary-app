@@ -1,0 +1,16 @@
+{% extends 'base/diary_base.html' %}
+
+{% block body %}
+<div class="text-end text-muted mb-2" id="clock"></div>
+
+<div class="d-grid gap-3 col-6 mx-auto">
+    <a href="{% url 'diary:page_create' %}" class="btn btn-primary btn-lg">日記作成</a>
+    <a href="{% url 'diary:page_list' %}" class="btn btn-outline-secondary btn-lg">ページ一覧</a>
+    <a href="{% url 'diary:mypage_list' %}" class="btn btn-outline-info btn-lg">マイページ一覧</a>
+
+    <form action="{% url 'accounts:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-lg">ログアウト</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base/diary_base.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-3">{{ page.title }}</h2>
+            <p class="text-muted text-center">{{ page.page_date }}</p>
+
+            <hr>
+
+            <div class="mb-4">
+                <p class="card-text">{{ page.body|linebreaksbr }}</p>
+            </div>
+
+            {% if page.picture %}
+                <div class="text-center mb-3">
+                    <img src="{{ page.picture.url }}" class="img-fluid rounded" alt="画像">
+                </div>
+            {% endif %}
+
+            {% if page.user == request.user %}
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'diary:page_update' page.id %}" class="btn btn-warning">編集</a>
+                    <a href="{% url 'diary:page_delete' page.id %}" class="btn btn-danger">削除</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base/diary_base.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 text-danger">日記削除の確認</h2>
+
+            <form method="post" class="mb-4">
+                {% csrf_token %}
+                <p class="text-center">このページを本当に削除してもよろしいですか？</p>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-danger">削除</button>
+                    <a href="{% url 'diary:page_detail' page.id %}" class="btn btn-secondary ms-2">キャンセル</a>
+                </div>
+            </form>
+
+            <hr>
+
+            <h4 class="mb-2">{{ page.title }}</h4>
+            <p class="text-muted">{{ page.page_date }}</p>
+            <div class="mb-3">{{ page.body | linebreaksbr }}</div>
+
+            {% if page.picture %}
+                <div class="text-center">
+                    <img src="{{ page.picture.url }}" class="img-fluid rounded" alt="日記画像">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

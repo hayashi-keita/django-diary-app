@@ -1,0 +1,24 @@
+{% extends "base/diary_base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📘 日記リスト</h2>
+
+    {% if page_list %}
+        <div class="list-group">
+            {% for page in page_list %}
+                <a href="{% url 'diary:page_detail' page.id %}" 
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ page.title }}</div>
+                        <small class="text-muted">{{ page.page_date }}</small>
+                    </div>
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">日記ページが１つもありません。</div>
+    {% endif %}
+</div>
+{% endblock %}

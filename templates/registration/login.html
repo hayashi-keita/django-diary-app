@@ -1,0 +1,25 @@
+{% extends 'base/diary_base.html' %}
+
+{% block body %}
+<div class="container mt-5" style="max-width: 400px;">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="text-center mb-4">ログイン</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid">
+                    <button class="btn btn-primary" type="submit">ログイン</button>
+                </div>
+            </form>
+
+            <hr class="my-4">
+
+            <p class="text-center mb-0">
+                アカウントをお持ちでない方は  
+                <a href="{% url 'accounts:signup' %}">こちらから作成</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
